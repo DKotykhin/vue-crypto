@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Nabla&display=swap');
+
+body {
+  background: #56125b;
+  background: linear-gradient(90deg,
+      rgba(86, 18, 91, 1) 0%,
+      rgba(40, 10, 80, 1) 100%);
+}
