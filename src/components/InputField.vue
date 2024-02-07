@@ -1,6 +1,6 @@
 <template>
     <input min='0' type="number" placeholder='Type currency amount'
-        @input='changeAmount(($event?.target as HTMLInputElement)?.value)' />
+        @input='changeAmount(($event?.target as HTMLInputElement)?.value)' :value='amount' />
 </template>
 
 <script lang='ts'>
@@ -9,6 +9,10 @@ export default {
     props: {
         changeAmount: {
             type: Function,
+            required: true
+        },
+        amount: {
+            type: String,
             required: true
         }
     }

@@ -1,7 +1,7 @@
 <template>
     <ul>
-        <li v-for="currency in currencies" :key="currency.name" @click='selectItem(currency.name)'
-            :className='currentCrypto === currency.name ? "active" : ""'>
+        <li v-for="currency in currencies" :key="currency.name" @click='setCrypto(currency.name)'
+            :class='{ active: cryptoNow === currency.name }'>
             <p>{{ currency.label }}</p>
         </li>
     </ul>
@@ -13,6 +13,10 @@ export default {
     props: {
         setCrypto: {
             type: Function,
+            required: true
+        },
+        cryptoNow: {
+            type: String,
             required: true
         }
     },
@@ -32,15 +36,15 @@ export default {
                     label: 'Tether',
                 }
             ],
-            currentCrypto: '',
+            // currentCrypto: '',
         }
     },
-    methods: {
-        selectItem(value: string) {
-            this.currentCrypto = value
-            this.setCrypto(value)
-        }
-    }
+    // methods: {
+    //     selectItem(value: string) {
+    //         this.currentCrypto = value
+    //         this.setCrypto(value)
+    //     }
+    // }
 }
 </script>
 
@@ -56,7 +60,6 @@ ul {
 ul li {
     color: #fff;
     cursor: pointer;
-    font-family: Montserrat;
 }
 
 li:hover,

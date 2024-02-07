@@ -2,17 +2,20 @@
     <div class='container'>
         <div class='wrapper'>
             <h1>Crypto</h1>
-            <InputField :changeAmount='changeAmount' />
+            <InputField :changeAmount='changeAmount' :amount='amount' />
             <div class='selectors'>
-                <InputSelector :setCrypto='setCryptoFirst' />
-                <InputSelector :setCrypto='setCryptoSecond' />
+                <InputSelector :setCrypto='setCryptoFirst' :cryptoNow='cryptoFirst' />
+                <InputSelector :setCrypto='setCryptoSecond' :cryptoNow='cryptoSecond' />
+            </div>
+            <div class='buttons_wrapper'>
+                <button @click='reset'>Reset</button>
+                <button @click='convert'>Convert</button>
             </div>
             <p className='exchange' v-if='cryptoFirst || cryptoSecond'>
                 {{ cryptoFirst }} to {{ cryptoSecond }}
             </p>
             <p v-if='error' class='error'>{{ error }}</p>
             <p v-if='result' class='result'>Result: {{ result }}</p>
-            <button @click='convert'>Convert</button>
         </div>
         <p class='link'>Powered by <a v-bind:href='link' target='_blank'>Dmytro Kotykhin</a></p>
     </div>
@@ -32,24 +35,26 @@ export default {
     },
     data() {
         return {
-            amount: 0,
+            amount: "",
             cryptoFirst: '',
             cryptoSecond: '',
             error: '',
             result: 0,
-            // link: 'https://www.linkedin.com/in/dmytro-kotykhin-4683151b',
             link: import.meta.env.VITE_APP_LINKEDIN_LINK || '',
         }
     },
     methods: {
-        changeAmount(value: number) {
-            this.amount = value
+        changeAmount(value: string) {
+            this.amount = value;
+            this.error = ''
         },
         setCryptoFirst(value: string) {
-            this.cryptoFirst = value
+            this.cryptoFirst = value;
+            this.error = ''
         },
         setCryptoSecond(value: string) {
-            this.cryptoSecond = value
+            this.cryptoSecond = value;
+            this.error = ''
         },
         async convert() {
             this.result = 0;
@@ -63,10 +68,17 @@ export default {
                 this.error = 'Please select different currencies!'
                 return
             }
-            await convert.ready();        
+            await convert.ready();
 
             const res = convert[this.cryptoFirst as keyof typeof convert][this.cryptoSecond](this.amount);
-            this.result = res || 0;
+            this.result = res.toFixed(2) || 0;
+        },
+        reset() {
+            this.amount = '';
+            this.cryptoFirst = '';
+            this.cryptoSecond = '';
+            this.error = '';
+            this.result = 0;
         }
     }
 }
@@ -107,19 +119,22 @@ h1 {
 }
 
 .exchange {
-    font-family: Montserrat;
     font-size: 20px;
     margin: 10px 0;
     color: #fff;
 }
-
+.buttons_wrapper {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    margin-bottom: 10px;
+}
 button {
     padding: 10px 20px;
     border: none;
     border-radius: 5px;
     background-color: #fff;
     color: #000;
-    font-family: Montserrat;
     cursor: pointer;
     margin-top: 12px;
 }
@@ -129,23 +144,22 @@ button:hover {
 }
 
 .error {
-    font-family: Montserrat;
     color: rgb(252, 101, 101);
     margin: 10px 0;
     line-height: 24px;
 }
 
 .result {
-    font-family: Montserrat;
     color: #fff;
     margin: 10px 0;
     font-size: 20px;
 }
+
 .link {
-    font-family: Montserrat;
     color: #fff;
     margin-bottom: 20px;
 }
+
 .link a {
     color: #808080;
 }
