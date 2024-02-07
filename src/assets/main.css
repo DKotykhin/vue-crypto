@@ -5,4 +5,8 @@ body {
   background: linear-gradient(90deg,
       rgba(86, 18, 91, 1) 0%,
       rgba(40, 10, 80, 1) 100%);
+  font-family: 'Montserrat', sans-serif;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
 }

@@ -14,6 +14,7 @@
             <p v-if='result' class='result'>Result: {{ result }}</p>
             <button @click='convert'>Convert</button>
         </div>
+        <p class='link'>Powered by <a v-bind:href='link' target='_blank'>Dmytro Kotykhin</a></p>
     </div>
 </template>
 
@@ -36,6 +37,8 @@ export default {
             cryptoSecond: '',
             error: '',
             result: 0,
+            // link: 'https://www.linkedin.com/in/dmytro-kotykhin-4683151b',
+            link: import.meta.env.VITE_APP_LINKEDIN_LINK || '',
         }
     },
     methods: {
@@ -74,14 +77,20 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-between;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
 }
 
 .wrapper {
     width: 100%;
+    height: 100%;
     max-width: 350px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    flex-grow: 1;
 }
 
 h1 {
@@ -131,4 +140,13 @@ button:hover {
     color: #fff;
     margin: 10px 0;
     font-size: 20px;
-}</style>
+}
+.link {
+    font-family: Montserrat;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.link a {
+    color: #808080;
+}
+</style>
