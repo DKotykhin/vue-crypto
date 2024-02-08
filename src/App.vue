@@ -125,7 +125,8 @@ h1 {
 }
 .buttons_wrapper {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: center;
+    gap: 24px;
     width: 100%;
     margin-bottom: 10px;
 }
@@ -137,6 +138,10 @@ button {
     color: #000;
     cursor: pointer;
     margin-top: 12px;
+    width: 90px;
+}
+button:last-child {
+    background-color: #e8ba00;
 }
 
 button:hover {

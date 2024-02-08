@@ -2,7 +2,7 @@
     <ul>
         <li v-for="currency in currencies" :key="currency.name" @click='setCrypto(currency.name)'
             :class='{ active: cryptoNow === currency.name }'>
-            <p>{{ currency.label }}</p>
+            {{ currency.label }}
         </li>
     </ul>
 </template>
@@ -60,6 +60,8 @@ ul {
 ul li {
     color: #fff;
     cursor: pointer;
+    padding: 5px 10px;
+    margin: 5px 0;
 }
 
 li:hover,
@@ -67,6 +69,5 @@ li.active {
     background-color: #fff;
     color: #000;
     border-radius: 15px;
-    padding: 0 10px;
 }
 </style>
