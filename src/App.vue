@@ -1,30 +1,31 @@
 <template>
-    <div class='container'>
-        <div class='wrapper'>
+    <main class='container'>
+        <section class='wrapper'>
             <h1>Crypto</h1>
             <InputField :changeAmount='changeAmount' :amount='amount' />
             <div class='selectors'>
                 <InputSelector :setCrypto='setCryptoFirst' :cryptoNow='cryptoFirst' />
                 <InputSelector :setCrypto='setCryptoSecond' :cryptoNow='cryptoSecond' />
             </div>
-            <div class='buttons_wrapper'>
-                <button @click='reset'>Reset</button>
-                <button @click='convert'>Convert</button>
-            </div>
+            <ActionButtons :reset='reset' :convert='convert' />
             <p className='exchange' v-if='cryptoFirst || cryptoSecond'>
                 {{ cryptoFirst }} to {{ cryptoSecond }}
             </p>
             <p v-if='error' class='error'>{{ error }}</p>
             <p v-if='result' class='result'>Result: {{ result }}</p>
-        </div>
-        <p class='link'>Powered by <a v-bind:href='link' target='_blank'>Dmytro Kotykhin</a></p>
-    </div>
+        </section>
+        <p class='link'>
+            Powered by <a v-bind:href='link' target='_blank'>Dmytro Kotykhin</a>
+        </p>
+    </main>
 </template>
 
 <script lang="ts">
-import InputField from './components/InputField.vue'
-import InputSelector from './components/InputSelector.vue'
 import CryptoConvert from 'crypto-convert';
+
+import InputField from './components/InputField.vue';
+import InputSelector from './components/InputSelector.vue';
+import ActionButtons from './components/ActionButtons.vue';
 
 const convert = new CryptoConvert();
 
@@ -32,6 +33,7 @@ export default {
     components: {
         InputField,
         InputSelector,
+        ActionButtons,
     },
     data() {
         return {
@@ -122,30 +124,6 @@ h1 {
     font-size: 20px;
     margin: 10px 0;
     color: #fff;
-}
-.buttons_wrapper {
-    display: flex;
-    justify-content: center;
-    gap: 24px;
-    width: 100%;
-    margin-bottom: 10px;
-}
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #000;
-    cursor: pointer;
-    margin-top: 12px;
-    width: 90px;
-}
-button:last-child {
-    background-color: #e8ba00;
-}
-
-button:hover {
-    background-color: #d8d8d8;
 }
 
 .error {

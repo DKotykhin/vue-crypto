@@ -8,6 +8,8 @@
 </template>
 
 <script lang="ts">
+import { currencyList } from '@/assets/currencyList';
+
 export default {
     name: 'InputSelector',
     props: {
@@ -22,20 +24,7 @@ export default {
     },
     data() {
         return {
-            currencies: [
-                {
-                    name: 'BTC',
-                    label: 'Bitcoin',
-                },
-                {
-                    name: 'ETH',
-                    label: 'Ethereum',
-                },
-                {
-                    name: 'USDT',
-                    label: 'Tether',
-                }
-            ],
+            currencies: currencyList,
             // currentCrypto: '',
         }
     },
