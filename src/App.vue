@@ -1,6 +1,6 @@
 <template>
-    <main class='container'>
-        <section class='wrapper'>
+    <page-wrapper>
+        <section-wrapper>
             <h1>Crypto</h1>
             <InputField :changeAmount='changeAmount' :amount='amount' />
             <div class='selectors'>
@@ -13,11 +13,11 @@
             </p>
             <p v-if='error' class='error'>{{ error }}</p>
             <p v-if='result' class='result'>Result: {{ result }}</p>
-        </section>
+        </section-wrapper>
         <p class='link'>
             Powered by <a v-bind:href='link' target='_blank'>Dmytro Kotykhin</a>
         </p>
-    </main>
+    </page-wrapper>
 </template>
 
 <script lang="ts">
@@ -87,26 +87,6 @@ export default {
 </script>
 
 <style scoped>
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-}
-
-.wrapper {
-    width: 100%;
-    height: 100%;
-    max-width: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex-grow: 1;
-}
-
 h1 {
     font-family: Nabla;
     margin-top: 60px;
