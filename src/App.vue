@@ -23,9 +23,9 @@
 <script lang="ts">
 import CryptoConvert from 'crypto-convert';
 
-import InputField from './components/InputField.vue';
-import InputSelector from './components/InputSelector.vue';
-import ActionButtons from './components/ActionButtons.vue';
+import InputField from '@/components/InputField.vue';
+import InputSelector from '@/components/InputSelector.vue';
+import ActionButtons from '@/components/ActionButtons.vue';
 
 const convert = new CryptoConvert();
 

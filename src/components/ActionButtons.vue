@@ -1,7 +1,7 @@
 <template>
     <div class='buttons_wrapper'>
-        <button @click='reset()'>Reset</button>
-        <button @click='convert()'>Convert</button>
+        <the-button @click='reset()'>Reset</the-button>
+        <the-button @click='convert()'>Convert</the-button>
     </div>
 </template>
 
@@ -28,24 +28,5 @@ export default {
     gap: 24px;
     width: 100%;
     margin-bottom: 10px;
-}
-
-button {
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #fff;
-    color: #000;
-    cursor: pointer;
-    margin-top: 12px;
-    width: 90px;
-}
-
-button:last-child {
-    background-color: #e8ba00;
-}
-
-button:hover {
-    background-color: #d8d8d8;
 }
 </style>
